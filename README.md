@@ -39,7 +39,7 @@ cd back-end
 ### 2. Gerar o arquivo .jar da aplicação
 Execute o comando abaixo para compilar o projeto e gerar o arquivo .jar:
 ```bash
-mvn clean package
+mvn clean package -DskipTests
 ```
 O arquivo será criado dentro da pasta `target/`.
 
