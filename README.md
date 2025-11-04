@@ -22,7 +22,8 @@ A aplicação utiliza autenticação JWT, migração de banco de dados com Flywa
 ## Requisitos de ambiente
 
 - JDK 17 ou superior  
-- Maven 3.9 ou superior  
+- Maven 3.9 ou superior
+- Git
 - Docker (opcional, mas recomendado)  
 - Porta 8080 livre no sistema  
 
