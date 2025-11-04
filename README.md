@@ -1,7 +1,7 @@
 # Teste Técnico – Desenvolvedor Backend Java (Júnior)
 
 Este projeto implementa uma API REST em Java com Spring Boot para o gerenciamento de clientes, locações e reservas.  
-A aplicação utiliza autenticação JWT, migração de banco de dados com Flyway e documentação via Swagger
+A aplicação utiliza autenticação JWT, migração de banco de dados com Flyway e documentação via Swagger.
 
 ---
 
@@ -31,47 +31,66 @@ A aplicação utiliza autenticação JWT, migração de banco de dados com Flywa
 ## Como executar o projeto
 
 ### 1. Clonar o repositório
+
 ```bash
 git clone https://github.com/CarlosDanielXMS/back-end.git
 cd back-end
 ```
 
 ### 2. Gerar o arquivo .jar da aplicação
+
 Execute o comando abaixo para compilar o projeto e gerar o arquivo .jar:
+
 ```bash
 mvn clean package -DskipTests
 ```
+
 O arquivo será criado dentro da pasta `target/`.
 
 ### 3. Executar o projeto com Docker (Recomendado)
+
 Com o Docker e o Docker Compose instalados, execute:
+
 ```bash
 docker compose up --build
 ```
+
 Esse comando irá criar e iniciar os containers do PostgreSQL e da aplicação.  
 A aplicação ficará disponível em:
+
 ```
 http://localhost:8080/swagger-ui.html
 ```
 
+O Flyway criará automaticamente as tabelas `clientes`, `locacoes` e `reservas`.
+
 ### 4. Executar o projeto localmente (sem Docker)
+
 Caso prefira executar sem o Docker, siga os passos abaixo.
 
 1. Crie o banco de dados manualmente:
+
 ```sql
 CREATE DATABASE testeTecnico;
 ```
-2. Atualize as credenciais de acesso no arquivo:
+
+2. Configure o arquivo `src/main/resources/application.properties` com as credenciais locais.
+3. Gerar o arquivo .jar da aplicação:
+
+```bash
+mvn clean package -DskipTests
 ```
-src/main/resources/application.properties
-```
-3. Execute a aplicação localmente:
+
+O arquivo será criado dentro da pasta `target/`.
+
+4. Execute a aplicação localmente:
+
 ```bash
 mvn spring-boot:run
 ```
 
 O Flyway criará automaticamente as tabelas `clientes`, `locacoes` e `reservas`.  
-A aplicação estará disponível em `http://localhost:8080/swagger-ui.html`.
+A aplicação estará disponível em http://localhost:8080/swagger-ui.html.
 
 ---
 
@@ -80,12 +99,15 @@ A aplicação estará disponível em `http://localhost:8080/swagger-ui.html`.
 A autenticação é feita por token JWT.
 
 ### Login
-Endpoint público:
-```
+
+1. No Swagger, acesse a rota pública de login:
+
+```bash
 POST /auth/login
 ```
 
-Exemplo de corpo da requisição:
+2. Envie o corpo da requisição:
+
 ```json
 {
   "email": "admin@teste.com",
@@ -93,14 +115,16 @@ Exemplo de corpo da requisição:
 }
 ```
 
-A resposta conterá o token JWT:
+3. A resposta conterá o token JWT:
+
 ```json
 {
   "token": "eyJhbGciOiJIUzI1NiJ9..."
 }
 ```
 
-No Swagger, clique em "Authorize" insira o token e clique em `Authorize`.
+4. No Swagger, clique no botão “Authorize”, insira o token e confirme.  
+A partir disso, todas as rotas autenticadas poderão ser acessadas na interface.
 
 ---
 
@@ -148,6 +172,7 @@ src/main/java/com/example/back_end
 ## Testes automatizados
 
 Os testes podem ser executados com:
+
 ```bash
 mvn test
 ```
@@ -190,7 +215,7 @@ Por isso, o campo `tipo` foi implementado como um enum (`TiposLocacao`), represe
 ## Diferenciais entregues
 
 - Projeto totalmente conteinerizado (Dockerfile e docker-compose)  
-- Testes automatizados 
+- Testes automatizados  
 - DTOs e Mappers implementados com MapStruct  
 - Paginação configurada em todos os endpoints de listagem  
 - Tratamento global de erros padronizado  
